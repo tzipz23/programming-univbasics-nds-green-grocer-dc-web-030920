@@ -17,16 +17,20 @@ end
 
 def consolidate_cart(cart)
   
-  collection_index = 0
+  updated_cart = Array.new
+  cart_index = 0
 
-  while collection_index < collection.size do
-    current_item = collection[collection_index]
-    if ( current_item[:item] == name )
-      return current_item
+  while cart_index < cart.size do
+    current_item = cart[cart_index]
+    if ( find_item_by_name_in_collection( current_item[:item], updated_cart ) == nil)
+      current_item[:count] = 1
+      updated_cart.push(current_item)
+    else
+      increment_count_of_item( updated_cart, current_item[:item] )
     end
-    collection_index += 1
+    cart_index += 1
   end
-  nil
+  updated_cart
   
   # Consult README for inputs and outputs
   #
