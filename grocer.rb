@@ -1,6 +1,14 @@
 def find_item_by_name_in_collection(name, collection)
   
-  
+  cart_index = 0
+  while cart_index < cart.size do
+    current_item = cart[cart_index]
+    if ( current_item[:item] == item_name )
+      current_item[:count] += 1
+    end
+    cart_index += 1
+  end
+  cart
   
   # Implement me first!
   #
