@@ -81,6 +81,25 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
+  
+  checkout = consolidate_cart( cart )
+  checkout = apply_coupons( checkout, coupons )
+  checkout = apply_clearance( checkout )
+
+  index = 0
+  grand_total = 0
+
+  while index < checkout.size do
+    current_item_total = checkout[index][:price] * checkout[index][:count]
+    current_item_total.round(2)
+    grand_total += current_item_total
+    index += 1
+  end
+  if ( grand_total > 100 )
+    grand_total *= 0.90
+  end
+  grand_total
+  
   # Consult README for inputs and outputs
   #
   # This method should call
